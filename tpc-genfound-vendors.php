@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Great Dishes is a dead simple plugin to make a menu for a restaurant.
+ * Simple Plugin for adding a custom post type for Vendors using theme stylings and built on Foundation for Sites 5.
  *
  * @package   TPC Vendors
  * @author    Joey Hayes
