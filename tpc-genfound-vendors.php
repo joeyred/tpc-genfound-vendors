@@ -22,6 +22,9 @@
  * Domain Path:       /languages
 */
 
+//Bring in Field Groups
+include_once( 'inc/field-groups.php' );
+
 // Hook post type registration into 'init' action
 add_action( 'init', 'tpc_register_custom_post_vendor' );
 
@@ -64,8 +67,4 @@ function tpc_register_custom_post_vendor() {
 	);
 	register_post_type( "vendor", $args );
 }
-
-//Bring in Field Groups
-include_once( 'inc/field-groups.php' );
-
 ?>
