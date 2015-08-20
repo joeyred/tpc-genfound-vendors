@@ -14,7 +14,7 @@
  * Plugin URI:        https://github.com/joeyred/tpc-genfound-vendors
  * Description:       Simple Plugin for adding a custom post type for Vendors using theme stylings and built on Foundation for Sites 5.
  * Version:           0.1.0
- * Author:            Robin Cornett
+ * Author:            Joey Hayes
  * Author URI:        https://github.com/joeyred
  * Text Domain:       tpc-genfound-vendors
  * License:           GPL-2.0+
@@ -64,4 +64,8 @@ function tpc_register_custom_post_vendor() {
 	);
 	register_post_type( "vendor", $args );
 }
+
+//Bring in Field Groups
+include_once( 'inc/field-groups.php' );
+
 ?>
