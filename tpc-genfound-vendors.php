@@ -22,12 +22,18 @@
  * Domain Path:       /languages
 */
 
-define('PLUGIN_DOMAIN', "tpc-genfound-vendors")
+define('PLUGIN_DOMAIN', "tpc-genfound-vendors");
 
+// if ( file_exists(  'path_to_cmb/cmb2/init.php' ) ) {
+//   require_once( plugins_url() . 'tpc-genfound-vendors/cmb2/init.php');
+// }
 //Bring in Field Groups
-include_once( 'inc/field-groups.php' );
+require( 'inc/field-groups.php' );
 
-
+add_action( 'admin_head', 'tpcvendors_backend_styles');
+function tpcvendors_backend_styles() {
+	wp_enqueue_style( 'tpcvendors', plugins_url( 'tpc-genfound-vendors/css/backend-styles.css' ) );
+}
 
 // Hook post type registration into 'init' action
 add_action( 'init', 'tpcvendor_register_custom_post_type' );
@@ -68,13 +74,13 @@ function tpcvendor_register_custom_post_type() {
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
-		'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+		'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' )
 		//'taxonomies'          => array( 'category', 'post_tag' )
 	);
 	register_post_type( "vendor", $args );
 }
 	
-add_action( 'init', 'create_book_taxonomies', 0 );	
+add_action( 'init', 'tpcvendors_create_taxonomies', 0 );	
 /**
  * Register custom taxonomies
  *
@@ -97,7 +103,7 @@ function tpcvendors_create_taxonomies() {
 
 	$args = array(
 		'hierarchical'      => true,     // if this is true, it acts like categories             
-		'labels'            => $labels
+		'labels'            => $labels,
 		'show_admin_column' => true, 
 		'show_ui'           => true,
 		'query_var'         => true,
