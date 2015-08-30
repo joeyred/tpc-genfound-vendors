@@ -25,13 +25,10 @@ function tpcvendor_heading_meta_box( $object, $box ) {
 	wp_nonce_field( basename( __FILE__ ), 'tpcvendor_heading_nonce' );
 	?>
 
-	<div class="row">
-		<div class="small-12 columns">
+
 			<label for="tpcvendor-heading"><?php _e( "Heading", PLUGIN_DOMAIN ); ?>
     		<input class="widefat" type="text" name="tpcvendor-heading" id="tpcvendor-heading" value="<?php echo esc_attr( get_post_meta( $object->ID, 'tpcvendor-heading', true ) ); ?>" />
     		</label>
-		</div>
-	</div>
 
 
 
