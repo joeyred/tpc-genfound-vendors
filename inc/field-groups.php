@@ -1,73 +1,432 @@
 <?php
-/* Fire our meta box setup function on the post editor screen. */
-add_action( 'load-post.php', 'tpcvendor_meta_boxes_setup' );
-add_action( 'load-post-new.php', 'tpcvendor_meta_boxes_setup' );
 
-function tpcvendor_meta_boxes_setup() {
-	add_action('add_meta_boxes', 'tpcvendor_add_meta_boxes');
-
-	add_action( 'save_post', 'tpcvendor_save_meta_box', 10, 2 );
+if(function_exists("register_field_group"))
+{
+	register_field_group(array (
+		'id' => 'acf_logo-upload',
+		'title' => 'Logo Upload',
+		'fields' => array (
+			array (
+				'key' => 'field_55d2508c3dace',
+				'label' => 'Logo Upload',
+				'name' => 'logo_upload',
+				'type' => 'image',
+				'save_format' => 'object',
+				'preview_size' => 'thumbnail',
+				'library' => 'all',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'vendor',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'side',
+			'layout' => 'no_box',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 0,
+	));
+	register_field_group(array (
+		'id' => 'acf_call-to-action-button',
+		'title' => 'Call to Action Button',
+		'fields' => array (
+			array (
+				'key' => 'field_55d251e158555',
+				'label' => 'Button Text',
+				'name' => 'button_text',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d2520158556',
+				'label' => 'Button Link',
+				'name' => 'button_link',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'vendor',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'acf_after_title',
+			'layout' => 'no_box',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 1,
+	));
+	register_field_group(array (
+		'id' => 'acf_header-row',
+		'title' => 'Header Row',
+		'fields' => array (
+			array (
+				'key' => 'field_55d24491eba76',
+				'label' => 'Heading',
+				'name' => 'heading',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d244a2eba77',
+				'label' => 'Subheading',
+				'name' => 'subheading',
+				'type' => 'wysiwyg',
+				'default_value' => '',
+				'toolbar' => 'full',
+				'media_upload' => 'no',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'vendor',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'acf_after_title',
+			'layout' => 'no_box',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 2,
+	));
+	register_field_group(array (
+		'id' => 'acf_info-box-row',
+		'title' => 'Info Box Row',
+		'fields' => array (
+			array (
+				'key' => 'field_55d240cb42a78',
+				'label' => 'Info Box 1',
+				'name' => '',
+				'type' => 'tab',
+			),
+			array (
+				'key' => 'field_55d2407842a77',
+				'label' => 'Icon',
+				'name' => 'infobox1_icon',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d2410042a79',
+				'label' => 'Title',
+				'name' => 'infobox1_title',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d2425142a7a',
+				'label' => 'Content',
+				'name' => 'infobox1_content',
+				'type' => 'wysiwyg',
+				'default_value' => '',
+				'toolbar' => 'basic',
+				'media_upload' => 'no',
+			),
+			array (
+				'key' => 'field_55d2427c42a7b',
+				'label' => 'Info Box 2',
+				'name' => '',
+				'type' => 'tab',
+			),
+			array (
+				'key' => 'field_55d2428942a7c',
+				'label' => 'Icon',
+				'name' => 'infobox2_icon',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d242ad42a7d',
+				'label' => 'Title',
+				'name' => 'infobox2_title',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d242c642a7e',
+				'label' => 'Content',
+				'name' => 'infobox2_content',
+				'type' => 'wysiwyg',
+				'default_value' => '',
+				'toolbar' => 'basic',
+				'media_upload' => 'no',
+			),
+			array (
+				'key' => 'field_55d242f842a7f',
+				'label' => 'Info Box 3',
+				'name' => '',
+				'type' => 'tab',
+			),
+			array (
+				'key' => 'field_55d2433042a81',
+				'label' => 'Icon',
+				'name' => 'infobox3_icon',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d243a542a86',
+				'label' => 'Title',
+				'name' => 'infobox3_title',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d2437142a84',
+				'label' => 'Content',
+				'name' => 'infobox3_content',
+				'type' => 'wysiwyg',
+				'default_value' => '',
+				'toolbar' => 'basic',
+				'media_upload' => 'no',
+			),
+			array (
+				'key' => 'field_55d2435c42a82',
+				'label' => 'Info Box 4',
+				'name' => '',
+				'type' => 'tab',
+			),
+			array (
+				'key' => 'field_55d2432e42a80',
+				'label' => 'Icon',
+				'name' => 'infobox4_icon',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d243a442a85',
+				'label' => 'Title',
+				'name' => 'infobox4_title',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d2437042a83',
+				'label' => 'Content',
+				'name' => 'infobox4_content',
+				'type' => 'wysiwyg',
+				'default_value' => '',
+				'toolbar' => 'basic',
+				'media_upload' => 'no',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'vendor',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'acf_after_title',
+			'layout' => 'no_box',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 3,
+	));
+	register_field_group(array (
+		'id' => 'acf_staff-row',
+		'title' => 'Staff Row',
+		'fields' => array (
+			array (
+				'key' => 'field_55d247903e37f',
+				'label' => 'Staff 1',
+				'name' => '',
+				'type' => 'tab',
+			),
+			array (
+				'key' => 'field_55d2455f3e37b',
+				'label' => 'Avatar',
+				'name' => 'staff_avatar1',
+				'type' => 'image',
+				'save_format' => 'object',
+				'preview_size' => 'thumbnail',
+				'library' => 'all',
+			),
+			array (
+				'key' => 'field_55d247313e37c',
+				'label' => 'Name',
+				'name' => 'staff_name1',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d247573e37d',
+				'label' => 'Title',
+				'name' => 'staff_title1',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d247713e37e',
+				'label' => 'Description',
+				'name' => 'staff_description1',
+				'type' => 'wysiwyg',
+				'default_value' => '',
+				'toolbar' => 'basic',
+				'media_upload' => 'no',
+			),
+			array (
+				'key' => 'field_55d247b93e380',
+				'label' => 'Staff 2',
+				'name' => '',
+				'type' => 'tab',
+			),
+			array (
+				'key' => 'field_55d24f573e383',
+				'label' => 'Avatar',
+				'name' => 'staff_avatar2',
+				'type' => 'image',
+				'save_format' => 'object',
+				'preview_size' => 'thumbnail',
+				'library' => 'all',
+			),
+			array (
+				'key' => 'field_55d24f873e384',
+				'label' => 'Name',
+				'name' => 'staff_name2',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d24f9d3e385',
+				'label' => 'Title',
+				'name' => 'staff_title2',
+				'type' => 'text',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'none',
+				'maxlength' => '',
+			),
+			array (
+				'key' => 'field_55d24faa3e386',
+				'label' => 'Description',
+				'name' => 'staff_description2',
+				'type' => 'wysiwyg',
+				'default_value' => '',
+				'toolbar' => 'basic',
+				'media_upload' => 'no',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'vendor',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'acf_after_title',
+			'layout' => 'no_box',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 5,
+	));
 }
 
-function tpcvendor_add_meta_boxes() {
-
-	add_meta_box(
-	    'tpcvendor-heading',      // Unique ID
-	    esc_html__( 'Heading', PLUGIN_DOMAIN ),    // Title
-	    'tpcvendor_heading_meta_box',   // Callback function
-	    'vendor',         // Admin page (or post type)
-	    'normal',         // Context
-	    'default'         // Priority
-    );
-}
-
-function tpcvendor_heading_meta_box( $object, $box ) { 
-	wp_nonce_field( basename( __FILE__ ), 'tpcvendor_heading_nonce' );
-	?>
-
-
-			<label for="tpcvendor-heading"><?php _e( "Heading", PLUGIN_DOMAIN ); ?>
-    		<input class="widefat" type="text" name="tpcvendor-heading" id="tpcvendor-heading" value="<?php echo esc_attr( get_post_meta( $object->ID, 'tpcvendor-heading', true ) ); ?>" />
-    		</label>
-
-
-
-<?php
-}
-
-function tpcvendor_save_meta_box() {
-
-	 /* Verify the nonce before proceeding. */
-    if ( !isset( $_POST['tpcvendor_heading_nonce'] ) || !wp_verify_nonce( $_POST['tpcvendor_heading_nonce'], basename( __FILE__ ) ) )
-    	return $post_id;
-
-	/* Get the post type object. */
-    $post_type = get_post_type_object( $post->post_type );
-
-    /* Check if the current user has permission to edit the post. */
-  	if ( !current_user_can( $post_type->cap->edit_post, $post_id ) )
-    	return $post_id;
-
-    /* Get the posted data and sanitize it for use as an HTML class. */
-  	$new_meta_value = ( isset( $_POST['tpcvendor-heading'] ) ? sanitize_html_class( $_POST['tpcvendor-heading'] ) : '' );
-
-  	/* Get the meta key. */
-  	$meta_key = 'tpcvendor_heading';
-
-	/* Get the meta value of the custom field key. */
-	$meta_value = get_post_meta( $post_id, $meta_key, true );
-
-	/* If a new meta value was added and there was no previous value, add it. */
-	if ( $new_meta_value && '' == $meta_value )
-	add_post_meta( $post_id, $meta_key, $new_meta_value, true );
-
-	/* If the new meta value does not match the old value, update it. */
-	elseif ( $new_meta_value && $new_meta_value != $meta_value )
-	update_post_meta( $post_id, $meta_key, $new_meta_value );
-
-	/* If there is no new meta value but an old value exists, delete it. */
-	elseif ( '' == $new_meta_value && $meta_value )
-	delete_post_meta( $post_id, $meta_key, $meta_value );
-
-
-}
