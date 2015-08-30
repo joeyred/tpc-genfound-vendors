@@ -24,9 +24,10 @@
 
 define('PLUGIN_DOMAIN', "tpc-genfound-vendors");
 
-// if ( file_exists(  'path_to_cmb/cmb2/init.php' ) ) {
-//   require_once( plugins_url() . 'tpc-genfound-vendors/cmb2/init.php');
-// }
+// Bring in LITE Version of Advance Custom Fields
+define( 'ACF_LITE', true );
+include_once('advanced-custom-fields/acf.php');
+
 //Bring in Field Groups
 require( 'inc/field-groups.php' );
 
