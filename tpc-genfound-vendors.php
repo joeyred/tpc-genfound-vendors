@@ -24,6 +24,7 @@
 
 define('PLUGIN_DOMAIN', "tpc-genfound-vendors");
 
+
 // Bring in LITE Version of Advance Custom Fields
 define( 'ACF_LITE', true );
 include_once('advanced-custom-fields/acf.php');
@@ -33,7 +34,7 @@ require( 'inc/field-groups.php' );
 
 add_action( 'admin_head', 'tpcvendors_backend_styles');
 function tpcvendors_backend_styles() {
-	wp_enqueue_style( 'tpcvendors', plugins_url( 'tpc-genfound-vendors/css/backend-styles.css' ) );
+	wp_enqueue_style( 'tpcvendors',  plugins_url( 'tpc-genfound-vendors/css/backend-styles.css' ) );
 }
 
 // Hook post type registration into 'init' action
@@ -113,6 +114,21 @@ function tpcvendors_create_taxonomies() {
 
 	register_taxonomy( 'custom_cat', array('vendors'), $args );   
 }    
+
+// Filter the single_template with our custom function 
+add_filter('single_template', 'tpcvendors_custom_single_template');
+
+//route single- template
+function tpcvendors_custom_single_template( $single_template ){
+  global $wp_query, $post;
+  $found = locate_template('single-vendor.php');
+  if ( $post->post_type == 'vendor' && $found = '' ) {
+    //$single_template = plugins_url( 'tpc-genfound-vendors/templates/single-vendor.php' );
+    $single_template = dirname(__FILE__).'/templates/single-vendor.php';
+  }
+  return $single_template;
+}
+
 
 
 
