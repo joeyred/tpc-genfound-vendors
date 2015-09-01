@@ -1,17 +1,51 @@
+<?php
+
+function tpcvendors_display_image( $name ) {
+
+  if( $name == 'staff_avatar1' ) {
+    $image = get_field( 'staff_avatar1' );
+
+    if( !empty($image)) {
+    echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" />';
+    }
+  } 
+
+  
+  if( $name == 'staff_avatar2' ) {
+    $image = get_field( 'staff_avatar2' );
+
+    if( !empty($image)) {
+    echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" />';
+    }
+  } 
+
+
+  if( $name == 'heading_logo' ) {
+    $image = get_field( 'heading_logo' );
+
+    if( !empty($image)) {
+    echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" />';
+    }
+  } 
+
+}  
+
+?>
+
 <?php get_header(); ?>
 
 <!-- LOGO HEADER -->
 
-  <img src="file:///Users/brianhayes/Sites/Foundation%20Projects/tests/img/DIY_homepage.png" alt="Logo">
+  <?php tpcvendors_display_image( 'heading_logo' ); ?>
 
 
 <!-- ROW 1 - HEADING -->
 
 <div class="row"><!-- ROW OPEN -->
 
-  <div class="columns small-12"><!-- Title - Right -->
-    <h2>Expert Video-based Tutorials that Insure You Provide Expert Service AND Get Paid!</h2>
-    </div>
+  <div class="columns small-12 hide-for-large-up"><!-- Title - Right -->
+    <h2><?php the_field( 'heading' ); ?></h2>
+  </div>
 
   <div class="columns medium-6"><!-- Media - Left -->
 
@@ -23,11 +57,11 @@
 
   <div class="columns medium-6"><!-- Subheader - Right -->
 
-  <h3>IRS Audits, Exams and Collections are Skyrocketing!</h3>
+  <h2 class="show-for-large-up"><?php the_field( 'heading' ); ?></h2>
 
-  <h4>Make Sure Your Clients Get Expert Service in This Critical Area with!</h4>
+  <?php the_field( 'sub_heading' ); ?>
 
-  <a href="#" class="button expand">Call to Action</a><!-- Call to Action Button 1 -->
+  <a href="<?php the_field( 'affiliate_link' ); ?>" class="button expand"><?php the_field( 'button1_label' ); ?></a><!-- Call to Action Button 1 -->
 
   </div>
 
@@ -39,41 +73,45 @@
 
   <div class="columns small-12 medium-6 large-3" data-equalizer-watch> <!-- COLUMN -->
     <div class="info-box">
-      <span class="fa fa-laptop"></span>  
+      <span class="fa fa-<?php the_field( 'infobox1_icon' ); ?>"></span>  
 
-      <h3>Visual Tutorials</h3>
+      <h3><?php the_field( 'infobox1_title' ); ?></h3>
 
-      <p>Video and PDF eBook tutorials that give you exactly the information you need, as well as real world application and examples!</p>
+      <?php the_field( 'infobox1_content' ); ?>
+
     </div> <!-- INFO BOX CLOSE -->
   </div> <!-- COLUMN CLOSE -->
 
   <div class="columns small-12 medium-6 large-3" data-equalizer-watch> <!-- COLUMN -->
     <div class="info-box">
-      <span class="fa fa-laptop"></span>  
+      <span class="fa fa-<?php the_field( 'infobox2_icon' ); ?>"></span>  
 
-      <h3>Visual Tutorials</h3>
+      <h3><?php the_field( 'infobox2_title' ); ?></h3>
 
-      <p>Video and PDF eBook tutorials that give you exactly the information you need, as well as real world application and examples!</p>
+      <?php the_field( 'infobox2_content' ); ?>
+
     </div> <!-- INFO BOX CLOSE -->
   </div> <!-- COLUMN CLOSE -->
 
   <div class="columns small-12 medium-6 large-3" data-equalizer-watch> <!-- COLUMN -->
     <div class="info-box">
-      <span class="fa fa-laptop"></span>  
+      <span class="fa fa-<?php the_field( 'infobox3_icon' ); ?>"></span>  
 
-      <h3>Visual Tutorials</h3>
+      <h3><?php the_field( 'infobox3_title' ); ?></h3>
 
-      <p>Video and PDF eBook tutorials that give you exactly the information you need, as well as real world application and examples!</p>
+      <?php the_field( 'infobox3_content' ); ?>
+
     </div> <!-- INFO BOX CLOSE -->
   </div> <!-- COLUMN CLOSE -->
 
   <div class="columns small-12 medium-6 large-3" data-equalizer-watch> <!-- COLUMN -->
     <div class="info-box">
-      <span class="fa fa-laptop"></span>  
+      <span class="fa fa-<?php the_field( 'infobox4_icon' ); ?>"></span>  
 
-      <h3>Visual Tutorials</h3>
+      <h3><?php the_field( 'infobox4_title' ); ?></h3>
 
-      <p>Video and PDF eBook tutorials that give you exactly the information you need, as well as real world application and examples!</p>
+      <?php the_field( 'infobox4_content' ); ?>
+
     </div> <!-- INFO BOX CLOSE -->
   </div> <!-- COLUMN CLOSE -->
 
@@ -87,36 +125,42 @@
   <div class="columns large-6">
     <div class="row">
       <div class="columns small-5">
-        <img src="file:///Users/brianhayes/Sites/Foundation%20Projects/tests/img/allen2b.jpg" alt="Allen">
+        <?php tpcvendors_display_image( 'staff_avatar1' ); ?>
       </div>
       
       <div class="columns small-7">
-        <h3>Allen Scioli</h3>
-        <h4>President</h4> 
+
+        <h3><?php the_field( 'staff_name1' ); ?></h3>
+
+        <h4><?php the_field( 'staff_title1' ); ?></h4> 
+
       </div>
     </div>
     <div class="columns small-12">
-      <p>A former field assistance tax specialist and revenue officer with the SB/SE division of the Internal Revenue Service. He has been involved in the federal taxation arena for over fourteen years, which includes practicing in a top national public accounting firm and the U.S. Government.</p>
 
-      <p>Since forming Scioli and Associates, a tax representation firm in Saginaw, Michigan, Mr. Scioli, a specialist in IRS Offers in Compromise, has saved clients millions of dollars with hundreds of approved offers. Additionally, Allen has served as an expert witness in many State Tax Tribunal cases, U.S. Bankruptcy & District Court cases, and U.S. Dept. of Justice cases dealing with the Tax Division. Mr. Scioli is a former U.S. Treasury Secretary Appointee and a member of the IRS's Taxpayer Advocacy Panel (TAP).</p>
+      <?php the_field( 'staff_description1' ); ?>
+
     </div>
   </div>
   <!-- STAFF 2 -->
-  <div class="columns large-6">
+ <div class="columns large-6">
     <div class="row">
       <div class="columns small-5">
-        <img src="file:///Users/brianhayes/Sites/Foundation%20Projects/tests/img/allen2b.jpg" alt="Allen">
+        <?php tpcvendors_display_image( 'staff_avatar2' ); ?>
       </div>
       
       <div class="columns small-7">
-        <h3>Allen Scioli</h3>
-        <h4>President</h4> 
+
+        <h3><?php the_field( 'staff_name2' ); ?></h3>
+
+        <h4><?php the_field( 'staff_title2' ); ?></h4> 
+        
       </div>
     </div>
     <div class="columns small-12">
-      <p>A former field assistance tax specialist and revenue officer with the SB/SE division of the Internal Revenue Service. He has been involved in the federal taxation arena for over fourteen years, which includes practicing in a top national public accounting firm and the U.S. Government.</p>
 
-      <p>Since forming Scioli and Associates, a tax representation firm in Saginaw, Michigan, Mr. Scioli, a specialist in IRS Offers in Compromise, has saved clients millions of dollars with hundreds of approved offers. Additionally, Allen has served as an expert witness in many State Tax Tribunal cases, U.S. Bankruptcy & District Court cases, and U.S. Dept. of Justice cases dealing with the Tax Division. Mr. Scioli is a former U.S. Treasury Secretary Appointee and a member of the IRS's Taxpayer Advocacy Panel (TAP).</p>
+      <?php the_field( 'staff_description2' ); ?>
+
     </div>
   </div>
 
@@ -124,48 +168,24 @@
 
 <!-- EXTRA CONTENT -->
 
-<div class="row"><!-- ROW OPEN -->
+<!-- <div class="row"> --><!-- ROW OPEN -->
 
-</div><!-- ROW CLOSE -->
+<!-- </div> --><!-- ROW CLOSE -->
 
 <!-- MAIN CONTENT -->
 
 <div class="row"><!-- ROW OPEN -->
 
+<!-- ADD EXTRA CONTENT FIELD -->
+
 </div><!-- ROW CLOSE -->
 
-<?php
+<div class="row"><!-- ROW OPEN -->
+<div class="large-8 medium-9 medium-centered columns">
+  <a href="<?php the_field( 'affiliate_link' ); ?>" class="button expand"><?php the_field( 'button2_label' ); ?></a>
+</div>  
 
-/*
-*  get all custom fields and dump for testing
-*/
-
-$fields = get_fields();
-var_dump( $fields ); 
-
-/*
-*  get all custom fields, loop through them and load the field object to create a label => value markup
-*/
-
-$fields = get_fields();
-
-if( $fields )
-{
-  foreach( $fields as $field_name => $value )
-  {
-    // get_field_object( $field_name, $post_id, $options )
-    // - $value has already been loaded for us, no point to load it again in the get_field_object function
-    $field = get_field_object($field_name, false, array('load_value' => false));
-
-    echo '<div>';
-      echo '<h3>' . $field_name . '</h3>';
-      echo $value;
-    echo '</div>';
-  }
-}
-
-?>
-
+</div><!-- ROW CLOSE -->
 
   <!-- body content here -->
 
