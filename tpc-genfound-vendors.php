@@ -24,15 +24,17 @@
 
 define('PLUGIN_DOMAIN', "tpc-genfound-vendors");
 
-// if ( file_exists(  'path_to_cmb/cmb2/init.php' ) ) {
-//   require_once( plugins_url() . 'tpc-genfound-vendors/cmb2/init.php');
-// }
+
+// Bring in LITE Version of Advance Custom Fields
+define( 'ACF_LITE', true );
+include_once('advanced-custom-fields/acf.php');
+
 //Bring in Field Groups
 require( 'inc/field-groups.php' );
 
 add_action( 'admin_head', 'tpcvendors_backend_styles');
 function tpcvendors_backend_styles() {
-	wp_enqueue_style( 'tpcvendors', plugins_url( 'tpc-genfound-vendors/css/backend-styles.css' ) );
+	wp_enqueue_style( 'tpcvendors',  plugins_url( 'tpc-genfound-vendors/css/backend-styles.css' ) );
 }
 
 // Hook post type registration into 'init' action
@@ -113,6 +115,42 @@ function tpcvendors_create_taxonomies() {
 	register_taxonomy( 'custom_cat', array('vendors'), $args );   
 }    
 
+// Filter the single_template with our custom function 
+add_filter('single_template', 'tpcvendors_custom_single_template');
 
+/**
+ * Display custom tempalte for single post
+ * 
+ * @param  string $single_template Original Path
+ * @return string                  Ammended Path
+ */
+function tpcvendors_custom_single_template( $single_template ){
+
+  global $wp_query, $post;
+
+  $found = locate_template('single-vendor.php');
+
+  if ( $post->post_type == 'vendor' ) {
+    $single_template = dirname(__FILE__) . '/templates/single-vendor.php';
+  }
+
+  return $single_template;
+
+}
+
+function tpcvendors_index_shortcode( $atts, $content = null ) {
+
+	global $post;
+
+	ob_start(); // Buffer
+
+	require( 'templates/vendor-index.php' );
+
+	$content = ob_get_clean(); // Set buffered function to object 
+
+	return $content; // Return object
+
+}
+add_shortcode( 'vendor_index', 'tpcvendors_index_shortcode' );
 
 ?>
